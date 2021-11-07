@@ -5,15 +5,21 @@
 	<meta charset="utf-8">
 	<!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
 	<!-- <meta name="viewport" content="width=75%, initial-scale=1, shrink-to-fit=no"> -->
-	<meta id="myViewport" name="viewport" content="width = 90, initial-scale=1">
+	<!-- <meta id="myViewport" name="viewport" content="width = 90, initial-scale=1">
 	<script>
 	window.onload = function () {
 		var mvp = document.getElementById('myViewport');
 		mvp.setAttribute('content','width=90');
 	}
-	</script> 
-	<meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
-	<meta name="author" content="Creative Tim">
+	</script>  -->
+	<!-- <meta name="viewport" content="width=1900px, initial-scale=1.0, shrink-to-fit=no"> -->
+	<script type="text/javascript">
+        function zoom() {
+            document.body.style.zoom = "75%" 
+        }
+	</script>
+	<!-- <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
+	<meta name="author" content="Creative Tim"> -->
 	<title>Dashboard</title>
 	<!-- Favicon -->
 	<!-- <link rel="icon" href="<?= $Icon ?>" type="image/png"> -->
@@ -29,7 +35,7 @@
 	<script src="<?= $sweetalert2 ?>"></script>
 </head>
 
-<body>
+<body onload="zoom()">  
 	<!-- Sidenav -->
 	<!-- Main content -->
 	<div class="main-content" id="panel">

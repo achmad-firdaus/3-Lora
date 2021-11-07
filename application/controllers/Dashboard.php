@@ -222,11 +222,162 @@ class Dashboard extends CI_Controller {
 		redirect('Dashboard');
     }
 
+    public function getEveryTimeBKP ()
+    {
+        $getData = $this->getData();
+
+        $N1M1 = $this->db->distinct()->select('value AS valueh, month (created_dt) AS M')->from('node1_power')
+            ->where('date', 'Finish')->where('month(created_dt)','1')->group_by('created_dt')->order_by('created_dt', 'DESC')->get()->row_array();
+        $N1M2 = $this->db->distinct()->select('value AS valueh, month (created_dt) AS M')->from('node1_power')
+            ->where('date', 'Finish')->where('month(created_dt)','2')->group_by('created_dt')->order_by('created_dt', 'DESC')->get()->row_array();
+        $N1M3 = $this->db->distinct()->select('value AS valueh, month (created_dt) AS M')->from('node1_power')
+            ->where('date', 'Finish')->where('month(created_dt)','3')->group_by('created_dt')->order_by('created_dt', 'DESC')->get()->row_array();
+        $N1M4 = $this->db->distinct()->select('value AS valueh, month (created_dt) AS M')->from('node1_power')
+            ->where('date', 'Finish')->where('month(created_dt)','4')->group_by('created_dt')->order_by('created_dt', 'DESC')->get()->row_array();
+        $N1M5 = $this->db->distinct()->select('value AS valueh, month (created_dt) AS M')->from('node1_power')
+            ->where('date', 'Finish')->where('month(created_dt)','5')->group_by('created_dt')->order_by('created_dt', 'DESC')->get()->row_array();
+        $N1M6 = $this->db->distinct()->select('value AS valueh, month (created_dt) AS M')->from('node1_power')
+            ->where('date', 'Finish')->where('month(created_dt)','6')->group_by('created_dt')->order_by('created_dt', 'DESC')->get()->row_array();
+        $N1M7 = $this->db->distinct()->select('value AS valueh, month (created_dt) AS M')->from('node1_power')
+            ->where('date', 'Finish')->where('month(created_dt)','7')->group_by('created_dt')->order_by('created_dt', 'DESC')->get()->row_array();
+        $N1M8 = $this->db->distinct()->select('value AS valueh, month (created_dt) AS M')->from('node1_power')
+            ->where('date', 'Finish')->where('month(created_dt)','8')->group_by('created_dt')->order_by('created_dt', 'DESC')->get()->row_array();
+        $N1M9 = $this->db->distinct()->select('value AS valueh, month (created_dt) AS M')->from('node1_power')
+            ->where('date', 'Finish')->where('month(created_dt)','9')->group_by('created_dt')->order_by('created_dt', 'DESC')->get()->row_array();
+        $N1M10 = $this->db->distinct()->select('value AS valueh, month (created_dt) AS M')->from('node1_power')
+            ->where('date', 'Finish')->where('month(created_dt)','10')->group_by('created_dt')->order_by('created_dt', 'DESC')->get()->row_array();
+        $N1M11 = $this->db->distinct()->select('value AS valueh, month (created_dt) AS M')->from('node1_power')
+            ->where('date', 'Finish')->where('month(created_dt)','11')->group_by('created_dt')->order_by('created_dt', 'DESC')->get()->row_array();
+        $N1M12 = $this->db->distinct()->select('value AS valueh, month (created_dt) AS M')->from('node1_power')
+            ->where('date', 'Finish')->where('month(created_dt)','12')->group_by('created_dt')->order_by('created_dt', 'DESC')->get()->row_array();
+
+        $data = array(
+            //Month
+            'N1M1'            => isset($N1M1['valueh'])? $N1M1['valueh'] : 0 ,
+            'N1M2'            => isset($N1M2['valueh'])? $N1M2['valueh'] : 0 ,
+            'N1M3'            => isset($N1M3['valueh'])? $N1M3['valueh'] : 0 ,
+            'N1M4'            => isset($N1M4['valueh'])? $N1M4['valueh'] : 0 ,
+            'N1M5'            => isset($N1M5['valueh'])? $N1M5['valueh'] : 0 ,
+            'N1M6'            => isset($N1M6['valueh'])? $N1M6['valueh'] : 0 ,
+            'N1M7'            => isset($N1M7['valueh'])? $N1M7['valueh'] : 0 ,
+            'N1M8'            => isset($N1M8['valueh'])? $N1M8['valueh'] : 0 ,
+            'N1M9'            => isset($N1M9['valueh'])? $N1M9['valueh'] : 0 ,
+            'N1M10'            => isset($N1M10['valueh'])? $N1M10['valueh'] : 0 ,
+            'N1M11'            => isset($N1M11['valueh'])? $N1M11['valueh'] : 0 ,
+            'N1M12'            => isset($N1M12['valueh'])? $N1M12['valueh'] : 0 ,
+            // node 1
+            'node1_current' => $getData['node1_current'],
+            'node1_energy'  => $getData['node1_energy'],
+            'node1_pf'      => $getData['node1_pf'],
+            'node1_power'   => $getData['node1_power'],
+            'node1_voltage' => $getData['node1_voltage'],
+            // node 2
+            'node2_current' => $getData['node2_current'],
+            'node2_energy'  => $getData['node2_energy'],
+            'node2_pf'      => $getData['node2_pf'],
+            'node2_power'   => $getData['node2_power'],
+            'node2_voltage' => $getData['node2_voltage'],            
+            // earthquake Node 1
+            'node1_earthquake_Mon' => $getData['node1_earthquake_Mon'],
+            'node1_earthquake_Tue' => $getData['node1_earthquake_Tue'],
+            'node1_earthquake_Wed' => $getData['node1_earthquake_Wed'],
+            'node1_earthquake_Thu' => $getData['node1_earthquake_Thu'],
+            'node1_earthquake_Fri' => $getData['node1_earthquake_Fri'],
+            'node1_earthquake_Sat' => $getData['node1_earthquake_Sat'],
+            'node1_earthquake_Sun' => $getData['node1_earthquake_Sun'],
+            // earthquake Node 2
+            'node2_earthquake_Mon' => $getData['node2_earthquake_Mon'],
+            'node2_earthquake_Tue' => $getData['node2_earthquake_Tue'],
+            'node2_earthquake_Wed' => $getData['node2_earthquake_Wed'],
+            'node2_earthquake_Thu' => $getData['node2_earthquake_Thu'],
+            'node2_earthquake_Fri' => $getData['node2_earthquake_Fri'],
+            'node2_earthquake_Sat' => $getData['node2_earthquake_Sat'],
+            'node2_earthquake_Sun' => $getData['node2_earthquake_Sun'],
+        );
+        echo json_encode($data);
+    }
+
     public function getEveryTime ()
     {
         $getData = $this->getData();
 
+        $N1M1 = $this->db->distinct()->select('value AS valueh, month (created_dt) AS M')->from('node1_power')
+            ->where('date', 'Finish')->where('month(created_dt)','1')->group_by('created_dt')->order_by('created_dt', 'DESC')->get()->row_array();
+        $N1M2 = $this->db->distinct()->select('value AS valueh, month (created_dt) AS M')->from('node1_power')
+            ->where('date', 'Finish')->where('month(created_dt)','2')->group_by('created_dt')->order_by('created_dt', 'DESC')->get()->row_array();
+        $N1M3 = $this->db->distinct()->select('value AS valueh, month (created_dt) AS M')->from('node1_power')
+            ->where('date', 'Finish')->where('month(created_dt)','3')->group_by('created_dt')->order_by('created_dt', 'DESC')->get()->row_array();
+        $N1M4 = $this->db->distinct()->select('value AS valueh, month (created_dt) AS M')->from('node1_power')
+            ->where('date', 'Finish')->where('month(created_dt)','4')->group_by('created_dt')->order_by('created_dt', 'DESC')->get()->row_array();
+        $N1M5 = $this->db->distinct()->select('value AS valueh, month (created_dt) AS M')->from('node1_power')
+            ->where('date', 'Finish')->where('month(created_dt)','5')->group_by('created_dt')->order_by('created_dt', 'DESC')->get()->row_array();
+        $N1M6 = $this->db->distinct()->select('value AS valueh, month (created_dt) AS M')->from('node1_power')
+            ->where('date', 'Finish')->where('month(created_dt)','6')->group_by('created_dt')->order_by('created_dt', 'DESC')->get()->row_array();
+        $N1M7 = $this->db->distinct()->select('value AS valueh, month (created_dt) AS M')->from('node1_power')
+            ->where('date', 'Finish')->where('month(created_dt)','7')->group_by('created_dt')->order_by('created_dt', 'DESC')->get()->row_array();
+        $N1M8 = $this->db->distinct()->select('value AS valueh, month (created_dt) AS M')->from('node1_power')
+            ->where('date', 'Finish')->where('month(created_dt)','8')->group_by('created_dt')->order_by('created_dt', 'DESC')->get()->row_array();
+        $N1M9 = $this->db->distinct()->select('value AS valueh, month (created_dt) AS M')->from('node1_power')
+            ->where('date', 'Finish')->where('month(created_dt)','9')->group_by('created_dt')->order_by('created_dt', 'DESC')->get()->row_array();
+        $N1M10 = $this->db->distinct()->select('value AS valueh, month (created_dt) AS M')->from('node1_power')
+            ->where('date', 'Finish')->where('month(created_dt)','10')->group_by('created_dt')->order_by('created_dt', 'DESC')->get()->row_array();
+        $N1M11 = $this->db->distinct()->select('value AS valueh, month (created_dt) AS M')->from('node1_power')
+            ->where('date', 'Finish')->where('month(created_dt)','11')->group_by('created_dt')->order_by('created_dt', 'DESC')->get()->row_array();
+        $N1M12 = $this->db->distinct()->select('value AS valueh, month (created_dt) AS M')->from('node1_power')
+            ->where('date', 'Finish')->where('month(created_dt)','12')->group_by('created_dt')->order_by('created_dt', 'DESC')->get()->row_array();
+        
+        $N2M1 = $this->db->distinct()->select('value AS valueh, month (created_dt) AS M')->from('node2_power')
+            ->where('date', 'Finish')->where('month(created_dt)','1')->group_by('created_dt')->order_by('created_dt', 'DESC')->get()->row_array();
+        $N2M2 = $this->db->distinct()->select('value AS valueh, month (created_dt) AS M')->from('node2_power')
+            ->where('date', 'Finish')->where('month(created_dt)','2')->group_by('created_dt')->order_by('created_dt', 'DESC')->get()->row_array();
+        $N2M3 = $this->db->distinct()->select('value AS valueh, month (created_dt) AS M')->from('node2_power')
+            ->where('date', 'Finish')->where('month(created_dt)','3')->group_by('created_dt')->order_by('created_dt', 'DESC')->get()->row_array();
+        $N2M4 = $this->db->distinct()->select('value AS valueh, month (created_dt) AS M')->from('node2_power')
+            ->where('date', 'Finish')->where('month(created_dt)','4')->group_by('created_dt')->order_by('created_dt', 'DESC')->get()->row_array();
+        $N2M5 = $this->db->distinct()->select('value AS valueh, month (created_dt) AS M')->from('node2_power')
+            ->where('date', 'Finish')->where('month(created_dt)','5')->group_by('created_dt')->order_by('created_dt', 'DESC')->get()->row_array();
+        $N2M6 = $this->db->distinct()->select('value AS valueh, month (created_dt) AS M')->from('node2_power')
+            ->where('date', 'Finish')->where('month(created_dt)','6')->group_by('created_dt')->order_by('created_dt', 'DESC')->get()->row_array();
+        $N2M7 = $this->db->distinct()->select('value AS valueh, month (created_dt) AS M')->from('node2_power')
+            ->where('date', 'Finish')->where('month(created_dt)','7')->group_by('created_dt')->order_by('created_dt', 'DESC')->get()->row_array();
+        $N2M8 = $this->db->distinct()->select('value AS valueh, month (created_dt) AS M')->from('node2_power')
+            ->where('date', 'Finish')->where('month(created_dt)','8')->group_by('created_dt')->order_by('created_dt', 'DESC')->get()->row_array();
+        $N2M9 = $this->db->distinct()->select('value AS valueh, month (created_dt) AS M')->from('node2_power')
+            ->where('date', 'Finish')->where('month(created_dt)','9')->group_by('created_dt')->order_by('created_dt', 'DESC')->get()->row_array();
+        $N2M10 = $this->db->distinct()->select('value AS valueh, month (created_dt) AS M')->from('node2_power')
+            ->where('date', 'Finish')->where('month(created_dt)','10')->group_by('created_dt')->order_by('created_dt', 'DESC')->get()->row_array();
+        $N2M11 = $this->db->distinct()->select('value AS valueh, month (created_dt) AS M')->from('node2_power')
+            ->where('date', 'Finish')->where('month(created_dt)','11')->group_by('created_dt')->order_by('created_dt', 'DESC')->get()->row_array();
+        $N2M12 = $this->db->distinct()->select('value AS valueh, month (created_dt) AS M')->from('node2_power')
+            ->where('date', 'Finish')->where('month(created_dt)','12')->group_by('created_dt')->order_by('created_dt', 'DESC')->get()->row_array();
+
         $data = array(
+            //Month
+            'N1M1'            => isset($N1M1['valueh'])? $N1M1['valueh'] : 0 ,
+            'N1M2'            => isset($N1M2['valueh'])? $N1M2['valueh'] : 0 ,
+            'N1M3'            => isset($N1M3['valueh'])? $N1M3['valueh'] : 0 ,
+            'N1M4'            => isset($N1M4['valueh'])? $N1M4['valueh'] : 0 ,
+            'N1M5'            => isset($N1M5['valueh'])? $N1M5['valueh'] : 0 ,
+            'N1M6'            => isset($N1M6['valueh'])? $N1M6['valueh'] : 0 ,
+            'N1M7'            => isset($N1M7['valueh'])? $N1M7['valueh'] : 0 ,
+            'N1M8'            => isset($N1M8['valueh'])? $N1M8['valueh'] : 0 ,
+            'N1M9'            => isset($N1M9['valueh'])? $N1M9['valueh'] : 0 ,
+            'N1M10'            => isset($N1M10['valueh'])? $N1M10['valueh'] : 0 ,
+            'N1M11'            => isset($N1M11['valueh'])? $N1M11['valueh'] : 0 ,
+            'N1M12'            => isset($N1M12['valueh'])? $N1M12['valueh'] : 0 ,
+            //N2
+            'N2M1'            => isset($N2M1['valueh'])? $N2M1['valueh'] : 0 ,
+            'N2M2'            => isset($N2M2['valueh'])? $N2M2['valueh'] : 0 ,
+            'N2M3'            => isset($N2M3['valueh'])? $N2M3['valueh'] : 0 ,
+            'N2M4'            => isset($N2M4['valueh'])? $N2M4['valueh'] : 0 ,
+            'N2M5'            => isset($N2M5['valueh'])? $N2M5['valueh'] : 0 ,
+            'N2M6'            => isset($N2M6['valueh'])? $N2M6['valueh'] : 0 ,
+            'N2M7'            => isset($N2M7['valueh'])? $N2M7['valueh'] : 0 ,
+            'N2M8'            => isset($N2M8['valueh'])? $N2M8['valueh'] : 0 ,
+            'N2M9'            => isset($N2M9['valueh'])? $N2M9['valueh'] : 0 ,
+            'N2M10'            => isset($N2M10['valueh'])? $N2M10['valueh'] : 10 ,
+            'N2M11'            => isset($N2M11['valueh'])? $N2M11['valueh'] : 0 ,
+            'N2M12'            => isset($N2M12['valueh'])? $N2M12['valueh'] : 0 ,
             // node 1
             'node1_current' => $getData['node1_current'],
             'node1_energy'  => $getData['node1_energy'],

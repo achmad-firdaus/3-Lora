@@ -31,7 +31,7 @@ class RestApi extends CI_Controller {
         example:
         https://api.telegram.org/bot2080186387:AAF9g0WAEe06Ap8D9TkubUWu_QQW9QWI8Gk/getUpdates
     */
-    
+
 	public function __construct () 
     {
         parent::__construct();
@@ -213,7 +213,7 @@ class RestApi extends CI_Controller {
         if (empty($checkStatus_n1->num_rows()) && (int)DATE('d') === (int)$getDateGenerate['value'] ) 
         {
             $data = array (
-                'value' => $this->db->query(" select (SUM(value) /100 * 1352) as total from node1_power where time = 'SEND' and date != 'Finish' and created_dt between NOW() - INTERVAL 1 month and now() ")
+                'value' => $this->db->query(" select (SUM(value) /1000 * 1470) as total from node1_power where time = 'SEND' and date != 'Finish' and created_dt between NOW() - INTERVAL 1 month and now() ")
                                     ->row_array()['total'],
                 'time'  => 'SEND',
                 'date' 			=> 'Finish',
@@ -241,7 +241,7 @@ class RestApi extends CI_Controller {
         if (empty($checkStatus_n2->num_rows()) && (int)DATE('d') === (int)$getDateGenerate['value'] ) 
         {
             $data = array (
-                'value' => $this->db->query(" select (SUM(value) /100 * 1352) as total from node2_power where time = 'SEND' and date != 'Finish' and created_dt between NOW() - INTERVAL 1 month and now() ")
+                'value' => $this->db->query(" select (SUM(value) /1000 * 1470) as total from node2_power where time = 'SEND' and date != 'Finish' and created_dt between NOW() - INTERVAL 1 month and now() ")
                                     ->row_array()['total'],
                 'time'  => 'SEND',
                 'date' 			=> 'Finish',

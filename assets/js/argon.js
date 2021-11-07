@@ -907,19 +907,19 @@ var BarsChart = (function () {
 				}
 			},
 			data: {
-				labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+				labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
 				datasets: [
 					{
 						label: 'Node 1',
 						data: [
-							25, 20, 30, 22, 17, 29, 22, 30, 21, 30, 20
+							25, 20, 30, 22, 17, 29, 22, 30, 21, 30, 20, 12
 						],
 						backgroundColor: '#ffa800'
 					},
 					{
 						label: 'Node 2',
 						data: [
-							25, 20, 30, 22, 17, 29, 17, 29, 22, 30, 20
+							25, 20, 30, 22, 17, 29, 17, 29, 22, 30, 20, 24
 						]
 					},
 				]
@@ -927,7 +927,75 @@ var BarsChart = (function () {
 		});
 
 		// Save to jQuery object
-		$chart.data('chart', ordersChart);
+		// $chart.data('chart', ordersChart);
+
+		setInterval(function () {
+			var N1M1;
+			var N1M2;
+			var N1M3;
+			var N1M4;
+			var N1M5;
+			var N1M6;
+			var N1M7;
+			var N1M8;
+			var N1M9;
+			var N1M10;
+			var N1M11;
+			var N1M12;
+			//N2
+			var N2M12;
+			var N2M1;
+			var N2M2;
+			var N2M3;
+			var N2M4;
+			var N2M5;
+			var N2M6;
+			var N2M7;
+			var N2M8;
+			var N2M9;
+			var N2M10;
+			var N2M11;
+			var N2M12;
+			$.ajax({
+				type: 'post',
+				// url: baseUrl +'/Dashboard/getEveryTime',
+				url: baseUrl +'/getEveryTime',
+				success: function (e) {
+					let  obj = JSON.parse(e);
+					N1M1 = obj.N1M1;
+					N1M2 = obj.N1M2;
+					N1M3 = obj.N1M3;
+					N1M4 = obj.N1M4;
+					N1M5 = obj.N1M5;
+					N1M6 = obj.N1M6;
+					N1M7 = obj.N1M7;
+					N1M8 = obj.N1M8;
+					N1M9 = obj.N1M9;
+					N1M10 = obj.N1M10;
+					N1M11 = obj.N1M11;
+					N1M12 = obj.N1M12;
+					//N2
+					N2M1 = obj.N2M1;
+					N2M2 = obj.N2M2;
+					N2M3 = obj.N2M3;
+					N2M4 = obj.N2M4;
+					N2M5 = obj.N2M5;
+					N2M6 = obj.N2M6;
+					N2M7 = obj.N2M7;
+					N2M8 = obj.N2M8;
+					N2M9 = obj.N2M9;
+					N2M10 = obj.N2M10;
+					N2M11 = obj.N2M11;
+					N2M12 = obj.N2M12;
+					// console.log(obj);
+					ordersChart.data.datasets[0].data = [N1M1 , N1M2, N1M3, N1M4, N1M5, N1M6, N1M7, N1M8, N1M9, N1M10, N1M11, N1M12]
+					// ordersChart.data.datasets[1].data = [N1M1 , N1M2, N1M3, N1M4, N1M5, N1M6, N1M7, N1M8, N1M9, N1M10, N1M11, N1M12]
+					ordersChart.data.datasets[1].data = [N2M1 , N2M2, N2M3, N2M4, N2M5, N2M6, N2M7, N2M8, N2M9, N2M10, N2M11, N2M12]
+					ordersChart.update();
+				}
+			});
+		}, 4000)
+
 	}
 
 
