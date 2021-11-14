@@ -34,34 +34,34 @@ class Dashboard extends CI_Controller {
     public function getData ()
     {
         // node 1
-        $node1_current = $this->db->select('cast(value AS DECIMAL(10,2)) AS value, time, date, created_dt')->from($this->table_current_n1)->where('value > 1')->order_by('created_dt', 'DESC')->get()->row_array();
-        $node1_energy = $this->db->select('cast(value AS DECIMAL(10,2)) AS value, time, date, created_dt')->from($this->table_energy_n1)->where('value > 1')->order_by('created_dt', 'DESC')->get()->row_array();
-        $node1_pf = $this->db->select('cast(value AS DECIMAL(10,2)) AS value, time, date, created_dt')->from($this->table_pf_n1)->where('value > 1')->order_by('created_dt', 'DESC')->get()->row_array();
-        $node1_power = $this->db->select('cast(value AS DECIMAL(10,2)) AS value, time, date, created_dt')->from($this->table_power_n1)->where('value > 1')->order_by('created_dt', 'DESC')->get()->row_array();
-        $node1_voltage = $this->db->select('cast(value AS DECIMAL(10,2)) AS value, time, date, created_dt')->from($this->table_voltage_n1)->where('value > 1')->order_by('created_dt', 'DESC')->get()->row_array();
+        $node1_current = $this->db->select('cast(value AS DECIMAL(10,2)) AS value, time, date, created_dt')->from($this->table_current_n1)->order_by('created_dt', 'DESC')->get()->row_array();
+        $node1_energy = $this->db->select('cast(value AS DECIMAL(10,2)) AS value, time, date, created_dt')->from($this->table_energy_n1)->order_by('created_dt', 'DESC')->get()->row_array();
+        $node1_pf = $this->db->select('cast(value AS DECIMAL(10,2)) AS value, time, date, created_dt')->from($this->table_pf_n1)->order_by('created_dt', 'DESC')->get()->row_array();
+        $node1_power = $this->db->select('cast(value AS DECIMAL(10,2)) AS value, time, date, created_dt')->from($this->table_power_n1)->order_by('created_dt', 'DESC')->get()->row_array();
+        $node1_voltage = $this->db->select('cast(value AS DECIMAL(10,2)) AS value, time, date, created_dt')->from($this->table_voltage_n1)->order_by('created_dt', 'DESC')->get()->row_array();
         // node 2
-        $node2_current = $this->db->select('cast(value AS DECIMAL(10,2)) AS value, time, date, created_dt')->from($this->table_current_n2)->where('value > 1')->order_by('created_dt', 'DESC')->get()->row_array();
-        $node2_energy = $this->db->select('cast(value AS DECIMAL(10,2)) AS value, time, date, created_dt')->from($this->table_energy_n2)->where('value > 1')->order_by('created_dt', 'DESC')->get()->row_array();
-        $node2_pf = $this->db->select('cast(value AS DECIMAL(10,2)) AS value, time, date, created_dt')->from($this->table_pf_n2)->where('value > 1')->order_by('created_dt', 'DESC')->get()->row_array();
-        $node2_power = $this->db->select('cast(value AS DECIMAL(10,2)) AS value, time, date, created_dt')->from($this->table_power_n2)->where('value > 1')->order_by('created_dt', 'DESC')->get()->row_array();
-        $node2_voltage = $this->db->select('cast(value AS DECIMAL(10,2)) AS value, time, date, created_dt')->from($this->table_voltage_n2)->where('value > 1')->order_by('created_dt', 'DESC')->get()->row_array();
+        $node2_current = $this->db->select('cast(value AS DECIMAL(10,2)) AS value, time, date, created_dt')->from($this->table_current_n2)->order_by('created_dt', 'DESC')->get()->row_array();
+        $node2_energy = $this->db->select('cast(value AS DECIMAL(10,2)) AS value, time, date, created_dt')->from($this->table_energy_n2)->order_by('created_dt', 'DESC')->get()->row_array();
+        $node2_pf = $this->db->select('cast(value AS DECIMAL(10,2)) AS value, time, date, created_dt')->from($this->table_pf_n2)->order_by('created_dt', 'DESC')->get()->row_array();
+        $node2_power = $this->db->select('cast(value AS DECIMAL(10,2)) AS value, time, date, created_dt')->from($this->table_power_n2)->order_by('created_dt', 'DESC')->get()->row_array();
+        $node2_voltage = $this->db->select('cast(value AS DECIMAL(10,2)) AS value, time, date, created_dt')->from($this->table_voltage_n2)->order_by('created_dt', 'DESC')->get()->row_array();
         // labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
         // earthquake Node 1
-        $node1_earthquake1 = $this->db->select('COALESCE(FORMAT(FLOOR(value),0), 0) AS valueh, time, date, created_dt')->from($this->table_earthquake_n1)->where('value > 1 AND LOWER(date) = "mon" ')->order_by('created_dt', 'DESC')->get()->row_array();
-        $node1_earthquake2 = $this->db->select('COALESCE(FORMAT(FLOOR(value),0), 0) AS valueh, time, date, created_dt')->from($this->table_earthquake_n1)->where('value > 1 AND LOWER(date) = "tue" ')->order_by('created_dt', 'DESC')->get()->row_array();
-        $node1_earthquake3 = $this->db->select('COALESCE(FORMAT(FLOOR(value),0), 0) AS valueh, time, date, created_dt')->from($this->table_earthquake_n1)->where('value > 1 AND LOWER(date) = "wed" ')->order_by('created_dt', 'DESC')->get()->row_array();
-        $node1_earthquake4 = $this->db->select('COALESCE(FORMAT(FLOOR(value),0), 0) AS valueh, time, date, created_dt')->from($this->table_earthquake_n1)->where('value > 1 AND LOWER(date) = "thu" ')->order_by('created_dt', 'DESC')->get()->row_array();
-        $node1_earthquake5 = $this->db->select('COALESCE(FORMAT(FLOOR(value),0), 0) AS valueh, time, date, created_dt')->from($this->table_earthquake_n1)->where('value > 1 AND LOWER(date) = "fri" ')->order_by('created_dt', 'DESC')->get()->row_array();
-        $node1_earthquake6 = $this->db->select('COALESCE(FORMAT(FLOOR(value),0), 0) AS valueh, time, date, created_dt')->from($this->table_earthquake_n1)->where('value > 1 AND LOWER(date) = "sat" ')->order_by('created_dt', 'DESC')->get()->row_array();
-        $node1_earthquake7 = $this->db->select('COALESCE(FORMAT(FLOOR(value),0), 0) AS valueh, time, date, created_dt')->from($this->table_earthquake_n1)->where('value > 1 AND LOWER(date) = "sun" ')->order_by('created_dt', 'DESC')->get()->row_array();
+        $node1_earthquake1 = $this->db->select('COALESCE(FORMAT(FLOOR(value),0), 0) AS valueh, time, date, created_dt')->from($this->table_earthquake_n1)->where('LOWER(date) = "mon" ')->order_by('created_dt', 'DESC')->get()->row_array();
+        $node1_earthquake2 = $this->db->select('COALESCE(FORMAT(FLOOR(value),0), 0) AS valueh, time, date, created_dt')->from($this->table_earthquake_n1)->where('LOWER(date) = "tue" ')->order_by('created_dt', 'DESC')->get()->row_array();
+        $node1_earthquake3 = $this->db->select('COALESCE(FORMAT(FLOOR(value),0), 0) AS valueh, time, date, created_dt')->from($this->table_earthquake_n1)->where('LOWER(date) = "wed" ')->order_by('created_dt', 'DESC')->get()->row_array();
+        $node1_earthquake4 = $this->db->select('COALESCE(FORMAT(FLOOR(value),0), 0) AS valueh, time, date, created_dt')->from($this->table_earthquake_n1)->where('LOWER(date) = "thu" ')->order_by('created_dt', 'DESC')->get()->row_array();
+        $node1_earthquake5 = $this->db->select('COALESCE(FORMAT(FLOOR(value),0), 0) AS valueh, time, date, created_dt')->from($this->table_earthquake_n1)->where('LOWER(date) = "fri" ')->order_by('created_dt', 'DESC')->get()->row_array();
+        $node1_earthquake6 = $this->db->select('COALESCE(FORMAT(FLOOR(value),0), 0) AS valueh, time, date, created_dt')->from($this->table_earthquake_n1)->where('LOWER(date) = "sat" ')->order_by('created_dt', 'DESC')->get()->row_array();
+        $node1_earthquake7 = $this->db->select('COALESCE(FORMAT(FLOOR(value),0), 0) AS valueh, time, date, created_dt')->from($this->table_earthquake_n1)->where('LOWER(date) = "sun" ')->order_by('created_dt', 'DESC')->get()->row_array();
         // earthquake Node 2
-        $node2_earthquake1 = $this->db->select('COALESCE(FORMAT(FLOOR(value),0), 0) AS valueh, time, date, created_dt')->from($this->table_earthquake_n2)->where('value > 1 AND LOWER(date) = "mon" ')->order_by('created_dt', 'DESC')->get()->row_array();
-        $node2_earthquake2 = $this->db->select('COALESCE(FORMAT(FLOOR(value),0), 0) AS valueh, time, date, created_dt')->from($this->table_earthquake_n2)->where('value > 1 AND LOWER(date) = "tue" ')->order_by('created_dt', 'DESC')->get()->row_array();
-        $node2_earthquake3 = $this->db->select('COALESCE(FORMAT(FLOOR(value),0), 0) AS valueh, time, date, created_dt')->from($this->table_earthquake_n2)->where('value > 1 AND LOWER(date) = "wed" ')->order_by('created_dt', 'DESC')->get()->row_array();
-        $node2_earthquake4 = $this->db->select('COALESCE(FORMAT(FLOOR(value),0), 0) AS valueh, time, date, created_dt')->from($this->table_earthquake_n2)->where('value > 1 AND LOWER(date) = "thu" ')->order_by('created_dt', 'DESC')->get()->row_array();
-        $node2_earthquake5 = $this->db->select('COALESCE(FORMAT(FLOOR(value),0), 0) AS valueh, time, date, created_dt')->from($this->table_earthquake_n2)->where('value > 1 AND LOWER(date) = "fri" ')->order_by('created_dt', 'DESC')->get()->row_array();
-        $node2_earthquake6 = $this->db->select('COALESCE(FORMAT(FLOOR(value),0), 0) AS valueh, time, date, created_dt')->from($this->table_earthquake_n2)->where('value > 1 AND LOWER(date) = "sat" ')->order_by('created_dt', 'DESC')->get()->row_array();
-        $node2_earthquake7 = $this->db->select('COALESCE(FORMAT(FLOOR(value),0), 0) AS valueh, time, date, created_dt')->from($this->table_earthquake_n2)->where('value > 1 AND LOWER(date) = "sun" ')->order_by('created_dt', 'DESC')->get()->row_array();
+        $node2_earthquake1 = $this->db->select('COALESCE(FORMAT(FLOOR(value),0), 0) AS valueh, time, date, created_dt')->from($this->table_earthquake_n2)->where('LOWER(date) = "mon" ')->order_by('created_dt', 'DESC')->get()->row_array();
+        $node2_earthquake2 = $this->db->select('COALESCE(FORMAT(FLOOR(value),0), 0) AS valueh, time, date, created_dt')->from($this->table_earthquake_n2)->where('LOWER(date) = "tue" ')->order_by('created_dt', 'DESC')->get()->row_array();
+        $node2_earthquake3 = $this->db->select('COALESCE(FORMAT(FLOOR(value),0), 0) AS valueh, time, date, created_dt')->from($this->table_earthquake_n2)->where('LOWER(date) = "wed" ')->order_by('created_dt', 'DESC')->get()->row_array();
+        $node2_earthquake4 = $this->db->select('COALESCE(FORMAT(FLOOR(value),0), 0) AS valueh, time, date, created_dt')->from($this->table_earthquake_n2)->where('LOWER(date) = "thu" ')->order_by('created_dt', 'DESC')->get()->row_array();
+        $node2_earthquake5 = $this->db->select('COALESCE(FORMAT(FLOOR(value),0), 0) AS valueh, time, date, created_dt')->from($this->table_earthquake_n2)->where('LOWER(date) = "fri" ')->order_by('created_dt', 'DESC')->get()->row_array();
+        $node2_earthquake6 = $this->db->select('COALESCE(FORMAT(FLOOR(value),0), 0) AS valueh, time, date, created_dt')->from($this->table_earthquake_n2)->where('LOWER(date) = "sat" ')->order_by('created_dt', 'DESC')->get()->row_array();
+        $node2_earthquake7 = $this->db->select('COALESCE(FORMAT(FLOOR(value),0), 0) AS valueh, time, date, created_dt')->from($this->table_earthquake_n2)->where('LOWER(date) = "sun" ')->order_by('created_dt', 'DESC')->get()->row_array();
         
         $prfile = $this->db->select('id_profile, first_name, last_name, username, nim, photo, password, created_dt')->from($this->table_profile)->get()->row_array();
         $getDateGenerate = $this->db->select(' value, param')->where('param', 'DATEGENERATE')->from('tbr_sistem')->get()->row_array();

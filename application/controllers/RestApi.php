@@ -46,21 +46,21 @@ class RestApi extends CI_Controller {
     public function getData ()
     {
         // node 1
-        $node1_current = $this->db->select('cast(value AS DECIMAL(10,2)) AS value, time, date, created_dt')->from($this->table_current_n1)->where('value > 1')->order_by('created_dt', 'DESC')->get()->row_array();
-        $node1_energy = $this->db->select('cast(value AS DECIMAL(10,2)) AS value, time, date, created_dt')->from($this->table_energy_n1)->where('value > 1')->order_by('created_dt', 'DESC')->get()->row_array();
-        $node1_pf = $this->db->select('cast(value AS DECIMAL(10,2)) AS value, time, date, created_dt')->from($this->table_pf_n1)->where('value > 1')->order_by('created_dt', 'DESC')->get()->row_array();
-        $node1_power = $this->db->select('cast(value AS DECIMAL(10,2)) AS value, time, date, created_dt')->from($this->table_power_n1)->where('value > 1')->order_by('created_dt', 'DESC')->get()->row_array();
-        $node1_voltage = $this->db->select('cast(value AS DECIMAL(10,2)) AS value, time, date, created_dt')->from($this->table_voltage_n1)->where('value > 1')->order_by('created_dt', 'DESC')->get()->row_array();
+        $node1_current = $this->db->select('cast(value AS DECIMAL(10,2)) AS value, time, date, created_dt')->from($this->table_current_n1)->order_by('created_dt', 'DESC')->get()->row_array();
+        $node1_energy = $this->db->select('cast(value AS DECIMAL(10,2)) AS value, time, date, created_dt')->from($this->table_energy_n1)->order_by('created_dt', 'DESC')->get()->row_array();
+        $node1_pf = $this->db->select('cast(value AS DECIMAL(10,2)) AS value, time, date, created_dt')->from($this->table_pf_n1)->order_by('created_dt', 'DESC')->get()->row_array();
+        $node1_power = $this->db->select('cast(value AS DECIMAL(10,2)) AS value, time, date, created_dt')->from($this->table_power_n1)->order_by('created_dt', 'DESC')->get()->row_array();
+        $node1_voltage = $this->db->select('cast(value AS DECIMAL(10,2)) AS value, time, date, created_dt')->from($this->table_voltage_n1)->order_by('created_dt', 'DESC')->get()->row_array();
         // node 2
-        $node2_current = $this->db->select('cast(value AS DECIMAL(10,2)) AS value, time, date, created_dt')->from($this->table_current_n2)->where('value > 1')->order_by('created_dt', 'DESC')->get()->row_array();
-        $node2_energy = $this->db->select('cast(value AS DECIMAL(10,2)) AS value, time, date, created_dt')->from($this->table_energy_n2)->where('value > 1')->order_by('created_dt', 'DESC')->get()->row_array();
-        $node2_pf = $this->db->select('cast(value AS DECIMAL(10,2)) AS value, time, date, created_dt')->from($this->table_pf_n2)->where('value > 1')->order_by('created_dt', 'DESC')->get()->row_array();
-        $node2_power = $this->db->select('cast(value AS DECIMAL(10,2)) AS value, time, date, created_dt')->from($this->table_power_n2)->where('value > 1')->order_by('created_dt', 'DESC')->get()->row_array();
-        $node2_voltage = $this->db->select('cast(value AS DECIMAL(10,2)) AS value, time, date, created_dt')->from($this->table_voltage_n2)->where('value > 1')->order_by('created_dt', 'DESC')->get()->row_array();
+        $node2_current = $this->db->select('cast(value AS DECIMAL(10,2)) AS value, time, date, created_dt')->from($this->table_current_n2)->order_by('created_dt', 'DESC')->get()->row_array();
+        $node2_energy = $this->db->select('cast(value AS DECIMAL(10,2)) AS value, time, date, created_dt')->from($this->table_energy_n2)->order_by('created_dt', 'DESC')->get()->row_array();
+        $node2_pf = $this->db->select('cast(value AS DECIMAL(10,2)) AS value, time, date, created_dt')->from($this->table_pf_n2)->order_by('created_dt', 'DESC')->get()->row_array();
+        $node2_power = $this->db->select('cast(value AS DECIMAL(10,2)) AS value, time, date, created_dt')->from($this->table_power_n2)->order_by('created_dt', 'DESC')->get()->row_array();
+        $node2_voltage = $this->db->select('cast(value AS DECIMAL(10,2)) AS value, time, date, created_dt')->from($this->table_voltage_n2)->order_by('created_dt', 'DESC')->get()->row_array();
         // earthquake Node 1
-        $node1_earthquake1 = $this->db->select('COALESCE(FORMAT(FLOOR(value),0), 0) AS valueh, time, date, created_dt')->from($this->table_earthquake_n1)->where('value > 1')->order_by('created_dt', 'DESC')->get()->row_array();
+        $node1_earthquake1 = $this->db->select('COALESCE(FORMAT(FLOOR(value),0), 0) AS valueh, time, date, created_dt')->from($this->table_earthquake_n1)->order_by('created_dt', 'DESC')->get()->row_array();
         // earthquake Node 2
-        $node2_earthquake1 = $this->db->select('COALESCE(FORMAT(FLOOR(value),0), 0) AS valueh, time, date, created_dt')->from($this->table_earthquake_n2)->where('value > 1')->order_by('created_dt', 'DESC')->get()->row_array();
+        $node2_earthquake1 = $this->db->select('COALESCE(FORMAT(FLOOR(value),0), 0) AS valueh, time, date, created_dt')->from($this->table_earthquake_n2)->order_by('created_dt', 'DESC')->get()->row_array();
 
         return array(
             // Node 1
@@ -84,35 +84,35 @@ class RestApi extends CI_Controller {
 
     public function starter () 
     {
-        $where = "value < 1";
-        $this->db->where($where);
-        $this->db->delete($this->table_voltage_n1);
-        $this->db->where($where);
-        $this->db->delete($this->table_voltage_n2);
-        $this->db->where($where);
-        $this->db->delete($this->table_current_n1);
-        $this->db->where($where);
-        $this->db->delete($this->table_current_n2);
-        $this->db->where($where);
-        $this->db->delete($this->table_power_n1);
-        $this->db->where($where);
-        $this->db->delete($this->table_power_n2);
-        $this->db->where($where);
-        $this->db->delete($this->table_energy_n1);
-        $this->db->where($where);
-        $this->db->delete($this->table_energy_n2);
-        $this->db->where($where);
-        $this->db->delete($this->table_frequency_n1);
-        $this->db->where($where);
-        $this->db->delete($this->table_frequency_n2);
-        $this->db->where($where);
-        $this->db->delete($this->table_pf_n1);
-        $this->db->where($where);
-        $this->db->delete($this->table_pf_n2);
-        $this->db->where($where);
-        $this->db->delete($this->table_earthquake_n1);
-        $this->db->where($where);
-        $this->db->delete($this->table_earthquake_n2);
+        // $where = "value < 1";
+        // $this->db->where($where);
+        // $this->db->delete($this->table_voltage_n1);
+        // $this->db->where($where);
+        // $this->db->delete($this->table_voltage_n2);
+        // $this->db->where($where);
+        // $this->db->delete($this->table_current_n1);
+        // $this->db->where($where);
+        // $this->db->delete($this->table_current_n2);
+        // $this->db->where($where);
+        // $this->db->delete($this->table_power_n1);
+        // $this->db->where($where);
+        // $this->db->delete($this->table_power_n2);
+        // $this->db->where($where);
+        // $this->db->delete($this->table_energy_n1);
+        // $this->db->where($where);
+        // $this->db->delete($this->table_energy_n2);
+        // $this->db->where($where);
+        // $this->db->delete($this->table_frequency_n1);
+        // $this->db->where($where);
+        // $this->db->delete($this->table_frequency_n2);
+        // $this->db->where($where);
+        // $this->db->delete($this->table_pf_n1);
+        // $this->db->where($where);
+        // $this->db->delete($this->table_pf_n2);
+        // $this->db->where($where);
+        // $this->db->delete($this->table_earthquake_n1);
+        // $this->db->where($where);
+        // $this->db->delete($this->table_earthquake_n2);
         $this->ubidots();
         $this->calculatation();
         $this->calculatation_paid_n1();
@@ -221,7 +221,6 @@ class RestApi extends CI_Controller {
             );
             $this->db->insert($this->table_power_n1, $data);
 
-
             $message = 'Your payment Node 1 in Month '.DATE('M').' Rp.'. number_format(ceil($data['value']), 2, ',', '.');
             $url = $this->telegramEndPoint.$this->telegramApi.'/sendMessage?chat_id='.$this->telegramChatID.'&text='.$message;
             $curl = curl_init();
@@ -257,7 +256,6 @@ class RestApi extends CI_Controller {
             $result = curl_exec($curl);
             curl_close($curl);        
             echo $result;
-
         }
     }
 
@@ -586,6 +584,16 @@ class RestApi extends CI_Controller {
                 'created_dt'	=> $this->NOW,
             );
             $this->db->insert($this->table_earthquake_n1, $data);
+            
+            $message = 'There was an earthquake on '.DATE('Y-m-d H:i:s');
+            $url = $this->telegramEndPoint.$this->telegramApi.'/sendMessage?chat_id='.$this->telegramChatID.'&text='.$message;
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+            $result = curl_exec($curl);
+            curl_close($curl);        
+            echo $result;
+
             return array(
                 'message' => "Success insert voltage node 1"
             );
@@ -599,6 +607,16 @@ class RestApi extends CI_Controller {
                 'created_dt'	=> $this->NOW,
             );
             $this->db->insert($this->table_earthquake_n2, $data);
+            
+            $message = 'There was an earthquake on '.DATE('Y-m-d H:i:s');
+            $url = $this->telegramEndPoint.$this->telegramApi.'/sendMessage?chat_id='.$this->telegramChatID.'&text='.$message;
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $url);
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+            $result = curl_exec($curl);
+            curl_close($curl);        
+            echo $result;
+
             return array(
                 'message' => "Success insert voltage node 1"
             );
