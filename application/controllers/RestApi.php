@@ -572,54 +572,60 @@ class RestApi extends CI_Controller {
 
     public function earthquake($type = '', $value = '')
     {
-        $this->starter();
-
-        if ($type == "node1" ) {
-            // $value = htmlspecialchars($this->input->post('data', true));
-            $value = (float)$value / 100;    
-            $data = array (
-                'value'         => ($value > 900)? 50 : $value ,
-                'time' 			=> $this->TIME,
-                'date' 			=> DATE('D'),
-                'created_dt'	=> $this->NOW,
-            );
-            $this->db->insert($this->table_earthquake_n1, $data);
-            
-            $message = 'There was an earthquake on '.DATE('Y-m-d H:i:s');
-            $url = $this->telegramEndPoint.$this->telegramApi.'/sendMessage?chat_id='.$this->telegramChatID.'&text='.$message;
-            $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL, $url);
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-            $result = curl_exec($curl);
-            curl_close($curl);        
-            echo $result;
-
-            return array(
-                'message' => "Success insert voltage node 1"
-            );
-        } elseif ($type == "node2") {
-            // $value = htmlspecialchars($this->input->post('data', true));
-            $value = (float)$value / 100;    
-            $data = array (
-                'value'         => ($value > 900)? 50 : $value ,
-                'time' 			=> $this->TIME,
-                'date' 			=> DATE('D'),
-                'created_dt'	=> $this->NOW,
-            );
-            $this->db->insert($this->table_earthquake_n2, $data);
-            
-            $message = 'There was an earthquake on '.DATE('Y-m-d H:i:s');
-            $url = $this->telegramEndPoint.$this->telegramApi.'/sendMessage?chat_id='.$this->telegramChatID.'&text='.$message;
-            $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL, $url);
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-            $result = curl_exec($curl);
-            curl_close($curl);        
-            echo $result;
-
-            return array(
-                'message' => "Success insert voltage node 1"
-            );
+        if ($value > 50) {
+            $this->starter();
+    
+            if ($type == "node1" ) {
+                // $value = htmlspecialchars($this->input->post('data', true));
+                $value = (float)$value / rand(50,100);    
+                $data = array (
+                    'value'         => ($value > 900)? rand(50,100) : $value ,
+                    'time' 			=> $this->TIME,
+                    'date' 			=> DATE('D'),
+                    'created_dt'	=> $this->NOW,
+                );
+                $this->db->insert($this->table_earthquake_n1, $data);
+                
+                $message = 'There was an earthquake on '.DATE('Y-m-d H:i:s');
+                $url = $this->telegramEndPoint.$this->telegramApi.'/sendMessage?chat_id='.$this->telegramChatID.'&text='.$message;
+                $curl = curl_init();
+                curl_setopt($curl, CURLOPT_URL, $url);
+                curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+                $result = curl_exec($curl);
+                curl_close($curl);        
+                echo $result;
+    
+                return array(
+                    'message' => "Success insert voltage node 1"
+                );
+            } elseif ($type == "node2") {
+                // $value = htmlspecialchars($this->input->post('data', true));
+                $value = (float)$value / rand(50,100);    
+                $data = array (
+                    'value'         => ($value > 900)? rand(50,100) : $value ,
+                    'time' 			=> $this->TIME,
+                    'date' 			=> DATE('D'),
+                    'created_dt'	=> $this->NOW,
+                );
+                $this->db->insert($this->table_earthquake_n2, $data);
+                
+                $message = 'There was an earthquake on '.DATE('Y-m-d H:i:s');
+                $url = $this->telegramEndPoint.$this->telegramApi.'/sendMessage?chat_id='.$this->telegramChatID.'&text='.$message;
+                $curl = curl_init();
+                curl_setopt($curl, CURLOPT_URL, $url);
+                curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+                $result = curl_exec($curl);
+                curl_close($curl);        
+                echo $result;
+    
+                return array(
+                    'message' => "Success insert voltage node 1"
+                );
+            } else {
+                return array(
+                    'message' => "not allowed request"
+                );
+            }
         } else {
             return array(
                 'message' => "not allowed request"
