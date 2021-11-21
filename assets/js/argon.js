@@ -1039,7 +1039,7 @@ var BarsChart2 = (function () {
 						ticks: {
 							callback: function (value) {
 								if (!(value % 10)) {
-									return value + ' Hertz';
+									return value + '';
 								}
 							}
 						}
