@@ -572,7 +572,7 @@ class RestApi extends CI_Controller {
 
     public function earthquake($type = '', $value = '')
     {
-        if ($value > 50) {
+        if ($value > 1000) {
             $this->starter();
     
             if ($type == "node1" ) {
